@@ -1,10 +1,11 @@
-import { title } from "process";
+
 import {useForm} from "react-hook-form"
 import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup"
 import {addDoc,collection} from "firebase/firestore"
 import {auth, db} from "../../Config/firebase"
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 interface CreatePostData
 {
@@ -17,6 +18,7 @@ const CreateForm = () => {
         description : yup.string().required("Description is required!!"),
     });
 
+    const navigate = useNavigate();
     const [user] = useAuthState(auth);
 
     const {register,handleSubmit ,formState:{errors}} = useForm<CreatePostData>({
@@ -32,6 +34,8 @@ const CreateForm = () => {
             username : user?.displayName,
             userId : user?.uid,
         })
+
+        navigate("/");
     }
     return (
     <form onSubmit={handleSubmit(onCreatePost)}>
