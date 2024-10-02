@@ -1,9 +1,10 @@
 import {getDocs,collection} from "firebase/firestore"
-import { db } from "../Config/firebase";
+import { db } from "../../Config/firebase";
 import { useState,useEffect } from "react";
-import { Interface } from "readline";
+import Post from "./Post";
 
-interface Post {
+
+export interface Post {
   id : string;
   userId : string;
   title : string;
@@ -25,7 +26,9 @@ const Main = () => {
   },[])
 
     return (<div>
-      MAIN
+      {postLists?.map((post) => (
+        <Post post={post}/>
+      ))}
     </div>)
 }
 

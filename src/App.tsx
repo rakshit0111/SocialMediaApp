@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
-import Main from './pages/Main';
+import Main from './pages/Mainpage/Main';
 import Login from './pages/Login';
 import Navbar from './Components/Navbar';
 import CreatePost from './pages/create-post/CreatePost';
